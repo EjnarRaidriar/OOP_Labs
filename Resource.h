@@ -10,7 +10,7 @@ public:
     //Construncotrs and Destructors
     Resource();
     Resource(std::string name, int durability);
-    ~Resource();
+    virtual ~Resource();
     //Getters and Setters
     void setName(std::string name);
     void setDurablity(int durability);
