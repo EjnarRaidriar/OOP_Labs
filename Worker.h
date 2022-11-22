@@ -27,7 +27,7 @@ public:
     //Methods
     virtual void collectResource(Resource* resource) = 0;
 };
-
+//Change all cargo accurances
 Worker::Worker()
 {
     name = "Worker";
