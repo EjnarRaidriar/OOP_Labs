@@ -13,7 +13,7 @@ public:
     Forester(std::string name, int age, int cargo);
     virtual ~Forester();
     //Methods
-    virtual void collectResource(Resource* resource) override;
+    void collectResource(Resource* resource) override;
     void addTool(Axe &axe);
     void removeTool(int index);
     void printTools();
@@ -43,6 +43,7 @@ void Forester::collectResource(Resource* resource)
     if (resource->getDurability() <= tools[tools.size()-1].getEfficiency()) {
             tools[tools.size()-1].Hit();
             resource->~Resource();
+            setCargo(getCargo()+1);
         } else {
             resource->setDurability(resource->getDurability() - tools[tools.size()-1].getEfficiency());
             tools[tools.size()-1].Hit();
