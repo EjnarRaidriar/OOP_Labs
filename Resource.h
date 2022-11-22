@@ -13,7 +13,7 @@ public:
     virtual ~Resource();
     //Getters and Setters
     void setName(std::string name);
-    void setDurablity(int durability);
+    void setDurability(int durability);
     std::string getName();
     int getDurability();
 };
@@ -37,7 +37,7 @@ void Resource::setName(std::string name)
     this->name = name;
 }
 
-void Resource::setDurablity(int durability)
+void Resource::setDurability(int durability)
 {
     this->durability = durability;
 }
