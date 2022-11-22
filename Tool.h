@@ -2,6 +2,7 @@
 #define TOOL_H
 
 #include<string>
+#include<iostream>
 
 class Tool
 {
@@ -36,6 +37,7 @@ Tool::Tool()
     durability = -1;
     efficiency = -1;
     hits = -1;
+    std::cout<<"-> Tool default constructor called!"<<std::endl;
 }
 
 Tool::Tool(std::string name, int durability, int efficiency)
@@ -44,10 +46,12 @@ Tool::Tool(std::string name, int durability, int efficiency)
     this->durability = durability;
     this->efficiency = efficiency;
     this->hits = 0;
+    std::cout<<"-> Tool custom construnctor"<<std::endl;
 }
 
 Tool::~Tool()
 {
+    std::cout<<"-> Tool destructor called!"<<std::endl;
 }
 
 //Getters and Setters
