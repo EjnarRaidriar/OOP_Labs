@@ -50,4 +50,33 @@ void Forester::collectResource(Resource* resource)
     }
 }
 
+void Forester::addTool(Axe &axe)
+{
+    tools.push_back(axe);
+}
+
+void Forester::removeTool(int index)
+{
+    tools.erase(tools.begin()+index);
+}
+
+void Forester::printTools()
+{
+    std::cout<<"-> "<<getName()<<"'s tools:"<<std::endl;
+    for (unsigned int i = 0; i < tools.size(); i++)
+    {
+        std::cout<<"   Tool nr. "<<i+1<<":"<<std::endl;
+        tools[i].printData();
+    }
+}
+
+void Forester::printData()
+{
+    std::cout<<"-> Forester's data:"<<std::endl;
+    std::cout<<"   Name: "<<getName()<<std::endl;
+    std::cout<<"   Age: "<<getAge()<<std::endl;
+    std::cout<<"   Cargo: "<<getCargo()<<std::endl;
+    std::cout<<"   Nr. of tools: "<<tools.size()+1<<std::endl;
+}
+
 #endif
