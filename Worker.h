@@ -3,6 +3,7 @@
 
 #include"Resource.h"
 #include<iostream>
+#include<vector>
 
 class Worker
 {
@@ -10,7 +11,8 @@ private:
     std::string name;
     int age;
     int cargo;
-
+protected:
+    std::vector<Resource*> resources;
 public:
     Worker();
     Worker(std::string name, int age, int cargo);
@@ -30,9 +32,9 @@ public:
 //Change all cargo accurances
 Worker::Worker()
 {
-    name = "Worker";
-    age = -1;
-    cargo = -1;
+    name = "Nameless worker";
+    age = 14;
+    cargo = 10;
     std::cout<<"-> Worker default constructor called!"<<std::endl;
 }
 
