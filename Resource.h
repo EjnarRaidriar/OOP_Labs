@@ -1,5 +1,7 @@
 #ifndef RESOURCE_H
 #define RESOURCE_H
+
+#include<iostream>
 #include<string>
 class Resource
 {
@@ -16,20 +18,24 @@ public:
     void setDurability(int durability);
     std::string getName();
     int getDurability();
+    virtual void makeAbstarct() = 0;
 };
 
 Resource::Resource(std::string name, int durability)
 {
     this->name = name;
     this->durability = durability;
+    std::cout<<"-> Resource custom constructor called!"<<std::endl;
 }
 
 Resource::Resource()
 {
+    std::cout<<"-> Resource default constructor called!"<<std::endl;
 }
 
 Resource::~Resource()
 {
+    std::cout<<"-> Resource destructor called!"<<std::endl;
 }
 //Getters and Setters
 void Resource::setName(std::string name)
