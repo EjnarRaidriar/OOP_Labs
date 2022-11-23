@@ -12,6 +12,7 @@ public:
     //Methods
     virtual void Sharpen() override;
     virtual void Hit() override;
+    //Output Methods
     virtual void printData() override;
 };
 
@@ -52,7 +53,7 @@ void Axe::Hit()
         setHits(0);
     }
 }
-
+//Output Methods
 void Axe::printData()
 {
     std::cout<<"   Tool name: "<<getName()<<std::endl;

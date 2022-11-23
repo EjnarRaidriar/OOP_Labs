@@ -28,6 +28,7 @@ public:
     //Methods
     virtual void Sharpen() = 0;
     virtual void Hit() = 0;
+    //Output Methods
     virtual void printData() = 0;
 };
 
