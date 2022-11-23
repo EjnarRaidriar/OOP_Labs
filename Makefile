@@ -1,10 +1,10 @@
 all: testWorker
 
-testWorker:testWorker.o Forester.h
+testWorker:testWorker.o
 	g++ $< -o $@
 
-testWorker.o:testWorker.cpp Forester.h
-	g++ -c $^
+testWorker.o:testWorker.cpp
+	g++ -c -O0 $^
 
 clean:
 	rm *.o testWorker

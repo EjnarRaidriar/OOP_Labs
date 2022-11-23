@@ -53,6 +53,7 @@ void Forester::collectResource(Resource* resource)
 void Forester::addTool(Axe &axe)
 {
     tools.push_back(axe);
+    std::cout<<"-> Forester picked up a "<<axe.getName()<<std::endl;
 }
 
 void Forester::removeTool(int index)
@@ -76,7 +77,7 @@ void Forester::printData()
     std::cout<<"   Name: "<<getName()<<std::endl;
     std::cout<<"   Age: "<<getAge()<<std::endl;
     std::cout<<"   Cargo: "<<getCargo()<<std::endl;
-    std::cout<<"   Nr. of tools: "<<tools.size()+1<<std::endl;
+    std::cout<<"   Nr. of tools: "<<tools.size()<<std::endl;
 }
 
 #endif
