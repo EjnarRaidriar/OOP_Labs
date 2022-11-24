@@ -29,7 +29,7 @@ public:
     virtual void Sharpen() = 0;
     virtual void Hit() = 0;
     //Output Methods
-    virtual void printData() = 0;
+    virtual void printData();
 };
 
 //Construnctor and Destructors
@@ -96,4 +96,14 @@ int Tool::getHits()
 {
     return this->hits;
 }
+
+//Output Methods
+void Tool::printData()
+{
+    std::cout<<"   Tool name: "<<name<<std::endl;
+    std::cout<<"   Tool durability: "<<durability<<std::endl;
+    std::cout<<"   Tool efficiency: "<<efficiency<<std::endl;
+    std::cout<<"   Tool's hit number: "<<hits<<std::endl;
+}
+
 #endif

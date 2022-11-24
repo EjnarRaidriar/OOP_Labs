@@ -12,8 +12,6 @@ public:
     //Methods
     virtual void Sharpen() override;
     virtual void Hit() override;
-    //Output Methods
-    virtual void printData() override;
 };
 
 Axe::Axe() : Tool()
@@ -53,12 +51,5 @@ void Axe::Hit()
         setHits(0);
     }
 }
-//Output Methods
-void Axe::printData()
-{
-    std::cout<<"   Tool name: "<<getName()<<std::endl;
-    std::cout<<"   Tool durability: "<<getDurability()<<std::endl;
-    std::cout<<"   Tool efficiency: "<<getEfficiency()<<std::endl;
-    std::cout<<"   Tool's hit number: "<<getHits()<<std::endl;
-}
+
 #endif
