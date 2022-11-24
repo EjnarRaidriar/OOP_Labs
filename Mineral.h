@@ -1,0 +1,38 @@
+#ifndef MINERAL_H
+#define MINERAL_H
+
+#include"Resource.h"
+
+class Mineral : public Resource
+{
+private:
+    /* data */
+public:
+    Mineral();
+    Mineral(std::string name, int durability);
+    ~Mineral();
+    //Methods
+    void makeAbstarct() override;
+};
+
+Mineral::Mineral() : Resource("Mineral", 100)
+{
+    std::cout<<"-> Mineral default constructor called!"<<std::endl;
+}
+
+Mineral::Mineral(std::string name, int durability) : Resource(name, durability)
+{
+    std::cout<<"-> Mineral custom constructor called!"<<std::endl;
+}
+
+Mineral::~Mineral()
+{
+    std::cout<<"-> Mineral destructor called!"<<std::endl;
+}
+
+//Methods
+void Mineral::makeAbstarct()
+{
+}
+
+#endif
