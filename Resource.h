@@ -25,13 +25,9 @@ Resource::Resource(std::string name, int durability)
 {
     this->name = name;
     this->durability = durability;
-    std::cout<<"-> Resource custom constructor called!"<<std::endl;
 }
 
-Resource::Resource()
-{
-    std::cout<<"-> Resource default constructor called!"<<std::endl;
-}
+Resource::Resource() {}
 
 Resource::~Resource()
 {

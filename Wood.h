@@ -10,20 +10,17 @@ private:
 public:
     Wood();
     Wood(std::string name, int durability);
+    Wood(Resource &wood);
     ~Wood();
     //Methods
     void makeAbstarct() override;
 };
 
-Wood::Wood() : Resource("Wood", 100)
-{
-    std::cout<<"-> Wood default constructor called!"<<std::endl;
-}
+Wood::Wood() : Resource("Wood", 100) {}
 
-Wood::Wood(std::string name, int durability) : Resource(name, durability)
-{
-    std::cout<<"-> Wood custom constructor called!"<<std::endl;
-}
+Wood::Wood(std::string name, int durability) : Resource(name, durability) {}
+
+Wood::Wood(Resource &wood) : Resource(wood.getName(), wood.getDurability()) {}
 
 Wood::~Wood()
 {

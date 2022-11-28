@@ -10,7 +10,7 @@ class Worker
 private:
     std::string name;
     int age;
-    int cargo;
+    unsigned int cargo;
 protected:
     std::vector<Resource*> resources;
 public:
@@ -27,7 +27,7 @@ public:
     void setCargo(int cargo);
 
     //Methods
-    virtual void collectResource(Resource* resource) = 0;
+    virtual bool collectResource(Resource* resource) = 0;
     //Output Methods
     virtual void printResources() = 0;
 };

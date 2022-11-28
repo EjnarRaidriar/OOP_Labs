@@ -2,6 +2,7 @@
 #define FORESTER_H
 #include"Worker.h"
 #include"Axe.h"
+#include"Wood.h"
 #include<vector>
 class Forester : public Worker
 {
@@ -12,9 +13,12 @@ public:
     Forester();
     Forester(std::string name, int age, int cargo);
     virtual ~Forester();
+    //Getters
+    int getToolAmount() const;
     //Methods
-    void collectResource(Resource* resource) override;
+    bool collectResource(Resource* resource) override;
     void addTool(Axe &axe);
+    void addNewTool();
     void removeTool(int index);
     //Output Methods
     void printResources() override;
@@ -39,26 +43,35 @@ Forester::~Forester()
     std::cout<<"-> Forester destructor called!"<<std::endl;
 }
 
+//Getters
+int Forester::getToolAmount() const
+{
+    return tools.size();
+}
 //Methods
-void Forester::collectResource(Resource* resource)
+bool Forester::collectResource(Resource* resource)
 {
     if (resources.size() < getCargo())
     {
         if (resource->getDurability() <= tools[tools.size()-1].getEfficiency()) {
                 tools[tools.size()-1].Hit();
-                resources.push_back(resource);
-                setCargo(getCargo()+1);
+                Resource* wood = new Wood(*resource);
+                resources.push_back(wood);
                 std::cout<<"-> "<<getName()<<" collected "<<resource->getName()<<std::endl;
+                return true;
             } else {
                 resource->setDurability(resource->getDurability() - tools[tools.size()-1].getEfficiency());
                 tools[tools.size()-1].Hit();
-                std::cout<<"-> "<<getName()<<" didn't manage to collect "<<resource->getName()<<std::endl;
-
+                std::cout<<"-> "<<getName()<<" strikes "<<resource->getName()<<std::endl;
+                std::cout<<"   Resource durability: "<<resource->getDurability()<<std::endl;
+                std::cout<<"   Tool efficiency: "<<tools[tools.size()-1].getEfficiency()<<std::endl;
+                return false;
         }
     }
     else
     {
         std::cout<<"-> Forester "<<getName()<<"'s cargo is full\n   He can't collect more resources!"<<std::endl;
+        return false;
     }
 }
 
@@ -71,6 +84,13 @@ void Forester::addTool(Axe &axe)
 void Forester::removeTool(int index)
 {
     tools.erase(tools.begin()+index);
+}
+
+void Forester::addNewTool()
+{
+    Axe* axe = new Axe("Axe", 100, 10);
+    tools.push_back(*axe);
+    std::cout<<"-> "<<getName()<<" created a new "<<getName()<<std::endl;
 }
 
 //Output Methods
