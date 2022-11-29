@@ -55,8 +55,9 @@ bool Forester::collectResource(Resource* resource)
     {
         if (resource->getDurability() <= tools[tools.size()-1].getEfficiency()) {
                 tools[tools.size()-1].Hit();
-                Resource* wood = new Wood(*resource);
-                resources.push_back(wood);
+                resources.push_back(resource);
+                //Resource* wood = new Wood(*resource);
+                //resources.push_back(wood);
                 std::cout<<"-> "<<getName()<<" collected "<<resource->getName()<<std::endl;
                 return true;
             } else {
@@ -90,7 +91,7 @@ void Forester::addNewTool()
 {
     Axe* axe = new Axe("Axe", 100, 10);
     tools.push_back(*axe);
-    std::cout<<"-> "<<getName()<<" created a new "<<getName()<<std::endl;
+    std::cout<<"-> "<<getName()<<" created a new "<<axe->getName()<<std::endl;
 }
 
 //Output Methods

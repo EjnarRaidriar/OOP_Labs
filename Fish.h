@@ -10,6 +10,7 @@ private:
 public:
     Fish();
     Fish(std::string name, int durability);
+    Fish(Resource &fish);
     ~Fish();
     //Methods
     void makeAbstarct() override;
@@ -24,6 +25,8 @@ Fish::Fish(std::string name, int durability) : Resource(name, durability)
 {
     std::cout<<"-> Fish custom constructor called!"<<std::endl;
 }
+
+Fish::Fish(Resource &fish) : Resource(fish.getName(), fish.getDurability()) {}
 
 Fish::~Fish()
 {

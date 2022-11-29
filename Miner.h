@@ -2,6 +2,7 @@
 #define MINER_H
 #include"Worker.h"
 #include"Pickaxe.h"
+#include"Mineral.h"
 #include<vector>
 class Miner : public Worker
 {
@@ -12,9 +13,12 @@ public:
     Miner();
     Miner(std::string name, int age, int cargo);
     virtual ~Miner();
+    //Getters
+    int getToolAmount() const;
     //Methods
-    void collectResource(Resource* resource) override;
+    bool collectResource(Resource* resource) override;
     void addTool(Pickaxe &pickaxe);
+    void addNewTool();
     void removeTool(int index);
     //Output Methods
     void printResources() override;
@@ -39,26 +43,36 @@ Miner::~Miner()
     std::cout<<"-> Miner destructor called!"<<std::endl;
 }
 
+//Getters
+int Miner::getToolAmount() const
+{
+    return tools.size();
+}
 //Methods
-void Miner::collectResource(Resource* resource)
+bool Miner::collectResource(Resource* resource)
 {
     if (resources.size() < getCargo())
     {
         if (resource->getDurability() <= tools[tools.size()-1].getEfficiency()) {
                 tools[tools.size()-1].Hit();
                 resources.push_back(resource);
-                setCargo(getCargo()+1);
+                //Resource* mineral = new Mineral(*resource);
+                //resources.push_back(mineral);
                 std::cout<<"-> "<<getName()<<" collected "<<resource->getName()<<std::endl;
+                return true;
             } else {
                 resource->setDurability(resource->getDurability() - tools[tools.size()-1].getEfficiency());
                 tools[tools.size()-1].Hit();
                 std::cout<<"-> "<<getName()<<" didn't manage to collect "<<resource->getName()<<std::endl;
-
+                std::cout<<"   Resource durability: "<<resource->getDurability()<<std::endl;
+                std::cout<<"   Tool efficiency: "<<tools[tools.size()-1].getEfficiency()<<std::endl;
+                return false;
         }
     }
     else
     {
         std::cout<<"-> Miner "<<getName()<<"'s cargo is full\n   He can't collect more resources!"<<std::endl;
+        return false;
     }
 }
 
@@ -71,6 +85,13 @@ void Miner::addTool(Pickaxe &pickaxe)
 void Miner::removeTool(int index)
 {
     tools.erase(tools.begin()+index);
+}
+
+void Miner::addNewTool()
+{
+    Pickaxe* pickaxe = new Pickaxe("Pickaxe", 100, 10);
+    tools.push_back(*pickaxe);
+    std::cout<<"-> "<<getName()<<" created a new "<<pickaxe->getName()<<std::endl;
 }
 
 //Output Methods

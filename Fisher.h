@@ -2,6 +2,7 @@
 #define FISHER_H
 #include"Worker.h"
 #include"Rod.h"
+#include"Fish.h"
 #include<vector>
 class Fisher : public Worker
 {
@@ -12,9 +13,12 @@ public:
     Fisher();
     Fisher(std::string name, int age, int cargo);
     virtual ~Fisher();
+    //Getters
+    int getToolAmount() const;
     //Methods
-    void collectResource(Resource* resource) override;
+    bool collectResource(Resource* resource) override;
     void addTool(Rod &rod);
+    void addNewTool();
     void removeTool(int index);
     //Output Methods
     void printResources() override;
@@ -39,26 +43,37 @@ Fisher::~Fisher()
     std::cout<<"-> Fisher destructor called!"<<std::endl;
 }
 
+//Getters
+int Fisher::getToolAmount() const
+{
+    return tools.size();
+}
+
 //Methods
-void Fisher::collectResource(Resource* resource)
+bool Fisher::collectResource(Resource* resource)
 {
     if (resources.size() < getCargo())
     {
         if (resource->getDurability() <= tools[tools.size()-1].getEfficiency()) {
                 tools[tools.size()-1].Hit();
                 resources.push_back(resource);
-                setCargo(getCargo()+1);
+                //Resource* fish = new Fish(*resource);
+                //resources.push_back(fish);
                 std::cout<<"-> "<<getName()<<" collected "<<resource->getName()<<std::endl;
+                return true;
             } else {
                 resource->setDurability(resource->getDurability() - tools[tools.size()-1].getEfficiency());
                 tools[tools.size()-1].Hit();
                 std::cout<<"-> "<<getName()<<" didn't manage to collect "<<resource->getName()<<std::endl;
-
+                std::cout<<"   Resource durability: "<<resource->getDurability()<<std::endl;
+                std::cout<<"   Tool efficiency: "<<tools[tools.size()-1].getEfficiency()<<std::endl;
+                return false;
         }
     }
     else
     {
         std::cout<<"-> Fisher "<<getName()<<"'s cargo is full\n   He can't collect more resources!"<<std::endl;
+        return false;
     }
 }
 
@@ -73,6 +88,12 @@ void Fisher::removeTool(int index)
     tools.erase(tools.begin()+index);
 }
 
+void Fisher::addNewTool()
+{
+    Rod* rod = new Rod("Rod", 100, 10);
+    tools.push_back(*rod);
+    std::cout<<"-> Fisher created a new "<<rod->getName()<<std::endl;
+}
 //Output Methods
 void Fisher::printResources()
 {

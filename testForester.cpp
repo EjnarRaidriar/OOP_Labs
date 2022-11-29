@@ -1,5 +1,4 @@
 #include"Forester.h"
-#include"Wood.h"
 #include<memory>
 #include<unistd.h>
 

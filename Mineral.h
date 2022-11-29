@@ -10,6 +10,7 @@ private:
 public:
     Mineral();
     Mineral(std::string name, int durability);
+    Mineral(Resource &mineral);
     ~Mineral();
     //Methods
     void makeAbstarct() override;
@@ -24,6 +25,8 @@ Mineral::Mineral(std::string name, int durability) : Resource(name, durability)
 {
     std::cout<<"-> Mineral custom constructor called!"<<std::endl;
 }
+
+Mineral::Mineral(Resource &mineral) : Resource(mineral.getName(), mineral.getDurability()) {}
 
 Mineral::~Mineral()
 {
