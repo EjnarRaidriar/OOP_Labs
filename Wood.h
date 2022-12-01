@@ -2,7 +2,6 @@
 #define WOOD_H
 
 #include"Resource.h"
-
 class Wood : public Resource
 {
 private:
@@ -24,7 +23,7 @@ Wood::Wood(Resource &wood) : Resource(wood.getName(), wood.getDurability()) {}
 
 Wood::~Wood()
 {
-    std::cout<<"-> Wood destructor called!"<<std::endl;
+    std::cout<<MAGENTA<<"-> Wood destructor called!"<<std::endl;
 }
 
 //Methods

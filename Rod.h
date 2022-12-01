@@ -17,18 +17,18 @@ public:
 Rod::Rod() : Tool()
 {
     setName("Rod");
-    std::cout<<"-> Rod default constructor called!"<<std::endl;
+    std::cout<<MAGENTA<<"-> Rod default constructor called!"<<std::endl;
 }
 
 Rod::Rod(std::string name, int durability, int efficiency) 
     : Tool(name, durability, efficiency)
 {
-    std::cout<<"-> Rod custom constructor called!"<<std::endl;
+    std::cout<<MAGENTA<<"-> Rod custom constructor called!"<<std::endl;
 }
 
 Rod::~Rod()
 {
-    std::cout<<"-> Rod destructor called!"<<std::endl;
+    std::cout<<MAGENTA<<"-> Rod destructor called!"<<std::endl;
 }
 
 //Methods
@@ -36,9 +36,9 @@ void Rod::Sharpen()
 {
     if (getEfficiency() < 5) {//change according to efficiency
             setEfficiency(getDurability() + 1);
-            std::cout<<"-> "<<getName()<<" sharpened succesfully!"<<std::endl;
+            std::cout<<GREEN<<"-> "<<getName()<<" sharpened succesfully!"<<std::endl;
         } else {
-            std::cout<<"-> "<<getName()<<" can't be sharpened anymore!"<<std::endl;
+            std::cout<<RED<<"-> "<<getName()<<" can't be sharpened anymore!"<<std::endl;
         }
 }
 
@@ -47,7 +47,7 @@ void Rod::Hit()
     setHits(getHits() + 1);
     if (getHits() > getDurability()) {
         setEfficiency(getEfficiency() - 1);
-        std::cout<<"-> Efficiency redurced to "<<getEfficiency()<<std::endl;
+        std::cout<<RED<<"-> Efficiency redurced to "<<getEfficiency()<<std::endl;
         setHits(0);
     }
 }

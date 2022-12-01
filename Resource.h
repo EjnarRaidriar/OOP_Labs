@@ -3,6 +3,7 @@
 
 #include<iostream>
 #include<string>
+#include"colors.h"
 class Resource
 {
 private:
@@ -31,7 +32,7 @@ Resource::Resource() {}
 
 Resource::~Resource()
 {
-    std::cout<<"-> Resource destructor called!"<<std::endl;
+    std::cout<<MAGENTA<<"-> Resource destructor called!"<<std::endl;
 }
 //Getters and Setters
 void Resource::setName(std::string name)

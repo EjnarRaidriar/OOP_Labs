@@ -29,18 +29,18 @@ public:
 Fisher::Fisher() : Worker()
 {
     setName("Nameless Fisher");
-    std::cout<<"-> Fisher default constructor called!"<<std::endl;
+    std::cout<<MAGENTA<<"-> Fisher default constructor called!"<<std::endl;
 }
 
 Fisher::Fisher(std::string name, int age, int cargo)
     : Worker(name, age, cargo)
 {
-    std::cout<<"-> Fisher custom constructor called!"<<std::endl;
+    std::cout<<MAGENTA<<"-> Fisher custom constructor called!"<<std::endl;
 }
 
 Fisher::~Fisher()
 {
-    std::cout<<"-> Fisher destructor called!"<<std::endl;
+    std::cout<<MAGENTA<<"-> Fisher destructor called!"<<std::endl;
 }
 
 //Getters
@@ -52,6 +52,11 @@ int Fisher::getToolAmount() const
 //Methods
 bool Fisher::collectResource(Resource* resource)
 {
+    if (resource == NULL)
+    {
+        std::cout<<RED<<"-> No resource to collect!"<<std::endl;
+        return false;
+    }
     if (resources.size() < getCargo())
     {
         if (resource->getDurability() <= tools[tools.size()-1].getEfficiency()) {
@@ -59,12 +64,12 @@ bool Fisher::collectResource(Resource* resource)
                 resources.push_back(resource);
                 //Resource* fish = new Fish(*resource);
                 //resources.push_back(fish);
-                std::cout<<"-> "<<getName()<<" collected "<<resource->getName()<<std::endl;
+                std::cout<<GREEN<<"-> "<<getName()<<" collected "<<resource->getName()<<std::endl;
                 return true;
             } else {
                 resource->setDurability(resource->getDurability() - tools[tools.size()-1].getEfficiency());
                 tools[tools.size()-1].Hit();
-                std::cout<<"-> "<<getName()<<" didn't manage to collect "<<resource->getName()<<std::endl;
+                std::cout<<RESET<<"-> "<<getName()<<" strikes "<<resource->getName()<<std::endl;
                 std::cout<<"   Resource durability: "<<resource->getDurability()<<std::endl;
                 std::cout<<"   Tool efficiency: "<<tools[tools.size()-1].getEfficiency()<<std::endl;
                 return false;
@@ -72,7 +77,7 @@ bool Fisher::collectResource(Resource* resource)
     }
     else
     {
-        std::cout<<"-> Fisher "<<getName()<<"'s cargo is full\n   He can't collect more resources!"<<std::endl;
+        std::cout<<RED<<"-> Fisher "<<getName()<<"'s cargo is full\n   He can't collect more resources!"<<std::endl;
         return false;
     }
 }
@@ -80,7 +85,7 @@ bool Fisher::collectResource(Resource* resource)
 void Fisher::addTool(Rod &rod)
 {
     tools.push_back(rod);
-    std::cout<<"-> Fisher picked up a "<<rod.getName()<<std::endl;
+    std::cout<<YELLOW<<"-> Fisher picked up a "<<rod.getName()<<std::endl;
 }
 
 void Fisher::removeTool(int index)
@@ -92,12 +97,12 @@ void Fisher::addNewTool()
 {
     Rod* rod = new Rod("Rod", 100, 10);
     tools.push_back(*rod);
-    std::cout<<"-> Fisher created a new "<<rod->getName()<<std::endl;
+    std::cout<<YELLOW<<"-> Fisher created a new "<<rod->getName()<<std::endl;
 }
 //Output Methods
 void Fisher::printResources()
 {
-    std::cout<<"-> Fisher "<<getName()<<"'s resources:"<<std::endl;
+    std::cout<<RESET<<"-> Fisher "<<getName()<<"'s resources:"<<std::endl;
     for (unsigned int i = 0; i < resources.size(); i++)
     {
         std::cout<<"   Resource nr. "<<i+1<<": "<<resources[i]->getName()<<std::endl;
@@ -106,7 +111,7 @@ void Fisher::printResources()
 
 void Fisher::printTools()
 {
-    std::cout<<"-> "<<getName()<<"'s tools:"<<std::endl;
+    std::cout<<RESET<<"-> "<<getName()<<"'s tools:"<<std::endl;
     for (unsigned int i = 0; i < tools.size(); i++)
     {
         std::cout<<"   Tool nr. "<<i+1<<":"<<std::endl;
@@ -116,7 +121,7 @@ void Fisher::printTools()
 
 void Fisher::printData()
 {
-    std::cout<<"-> Fisher's data:"<<std::endl;
+    std::cout<<RESET<<"-> Fisher's data:"<<std::endl;
     std::cout<<"   Name: "<<getName()<<std::endl;
     std::cout<<"   Age: "<<getAge()<<std::endl;
     std::cout<<"   Cargo: "<<getCargo()<<std::endl;

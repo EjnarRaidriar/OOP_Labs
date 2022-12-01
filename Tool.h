@@ -3,6 +3,7 @@
 
 #include<string>
 #include<iostream>
+#include"colors.h"
 
 class Tool
 {
@@ -39,7 +40,7 @@ Tool::Tool()
     durability = -1;
     efficiency = -1;
     hits = -1;
-    std::cout<<"-> Tool default constructor called!"<<std::endl;
+    std::cout<<MAGENTA<<"-> Tool default constructor called!"<<std::endl;
 }
 
 Tool::Tool(std::string name, int durability, int efficiency)
@@ -48,12 +49,12 @@ Tool::Tool(std::string name, int durability, int efficiency)
     this->durability = durability;
     this->efficiency = efficiency;
     this->hits = 0;
-    std::cout<<"-> Tool custom construnctor"<<std::endl;
+    std::cout<<MAGENTA<<"-> Tool custom construnctor"<<std::endl;
 }
 
 Tool::~Tool()
 {
-    std::cout<<"-> Tool destructor called!"<<std::endl;
+    std::cout<<MAGENTA<<"-> Tool destructor called!"<<std::endl;
 }
 
 //Getters and Setters
@@ -100,7 +101,7 @@ int Tool::getHits()
 //Output Methods
 void Tool::printData()
 {
-    std::cout<<"   Tool name: "<<name<<std::endl;
+    std::cout<<RESET<<"   Tool name: "<<name<<std::endl;
     std::cout<<"   Tool durability: "<<durability<<std::endl;
     std::cout<<"   Tool efficiency: "<<efficiency<<std::endl;
     std::cout<<"   Tool's hit number: "<<hits<<std::endl;

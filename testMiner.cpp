@@ -59,7 +59,7 @@ int main()
                     }
                 }
             }
-            else std::cout<<"-> No resources left!"<<std::endl;
+            else std::cout<<RED<<"-> No resources left!"<<std::endl;
         }
         miner->printData();
         miner->printResources();

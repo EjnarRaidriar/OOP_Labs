@@ -29,18 +29,18 @@ public:
 Miner::Miner() : Worker()
 {
     setName("Nameless Miner");
-    std::cout<<"-> Miner default constructor called!"<<std::endl;
+    std::cout<<MAGENTA<<"-> Miner default constructor called!"<<std::endl;
 }
 
 Miner::Miner(std::string name, int age, int cargo)
     : Worker(name, age, cargo)
 {
-    std::cout<<"-> Miner custom constructor called!"<<std::endl;
+    std::cout<<MAGENTA<<"-> Miner custom constructor called!"<<std::endl;
 }
 
 Miner::~Miner()
 {
-    std::cout<<"-> Miner destructor called!"<<std::endl;
+    std::cout<<MAGENTA<<"-> Miner destructor called!"<<std::endl;
 }
 
 //Getters
@@ -51,6 +51,11 @@ int Miner::getToolAmount() const
 //Methods
 bool Miner::collectResource(Resource* resource)
 {
+    if (resource == NULL)
+    {
+        std::cout<<RED<<"-> No resource to collect!"<<std::endl;
+        return false;
+    }
     if (resources.size() < getCargo())
     {
         if (resource->getDurability() <= tools[tools.size()-1].getEfficiency()) {
@@ -58,12 +63,12 @@ bool Miner::collectResource(Resource* resource)
                 resources.push_back(resource);
                 //Resource* mineral = new Mineral(*resource);
                 //resources.push_back(mineral);
-                std::cout<<"-> "<<getName()<<" collected "<<resource->getName()<<std::endl;
+                std::cout<<GREEN<<"-> "<<getName()<<" collected "<<resource->getName()<<std::endl;
                 return true;
             } else {
                 resource->setDurability(resource->getDurability() - tools[tools.size()-1].getEfficiency());
                 tools[tools.size()-1].Hit();
-                std::cout<<"-> "<<getName()<<" didn't manage to collect "<<resource->getName()<<std::endl;
+                std::cout<<RESET<<"-> "<<getName()<<" strikes "<<resource->getName()<<std::endl;
                 std::cout<<"   Resource durability: "<<resource->getDurability()<<std::endl;
                 std::cout<<"   Tool efficiency: "<<tools[tools.size()-1].getEfficiency()<<std::endl;
                 return false;
@@ -71,7 +76,7 @@ bool Miner::collectResource(Resource* resource)
     }
     else
     {
-        std::cout<<"-> Miner "<<getName()<<"'s cargo is full\n   He can't collect more resources!"<<std::endl;
+        std::cout<<RED<<"-> Miner "<<getName()<<"'s cargo is full\n   He can't collect more resources!"<<std::endl;
         return false;
     }
 }
@@ -79,7 +84,7 @@ bool Miner::collectResource(Resource* resource)
 void Miner::addTool(Pickaxe &pickaxe)
 {
     tools.push_back(pickaxe);
-    std::cout<<"-> Miner picked up a "<<pickaxe.getName()<<std::endl;
+    std::cout<<YELLOW<<"-> Miner picked up a "<<pickaxe.getName()<<std::endl;
 }
 
 void Miner::removeTool(int index)
@@ -91,13 +96,13 @@ void Miner::addNewTool()
 {
     Pickaxe* pickaxe = new Pickaxe("Pickaxe", 100, 10);
     tools.push_back(*pickaxe);
-    std::cout<<"-> "<<getName()<<" created a new "<<pickaxe->getName()<<std::endl;
+    std::cout<<YELLOW<<"-> "<<getName()<<" created a new "<<pickaxe->getName()<<std::endl;
 }
 
 //Output Methods
 void Miner::printResources()
 {
-    std::cout<<"-> Miner "<<getName()<<"'s resources:"<<std::endl;
+    std::cout<<RESET<<"-> Miner "<<getName()<<"'s resources:"<<std::endl;
     for (unsigned int i = 0; i < resources.size(); i++)
     {
         std::cout<<"   Resource nr. "<<i+1<<": "<<resources[i]->getName()<<std::endl;
@@ -106,7 +111,7 @@ void Miner::printResources()
 
 void Miner::printTools()
 {
-    std::cout<<"-> "<<getName()<<"'s tools:"<<std::endl;
+    std::cout<<RESET<<"-> "<<getName()<<"'s tools:"<<std::endl;
     for (unsigned int i = 0; i < tools.size(); i++)
     {
         std::cout<<"   Tool nr. "<<i+1<<":"<<std::endl;
@@ -116,7 +121,7 @@ void Miner::printTools()
 
 void Miner::printData()
 {
-    std::cout<<"-> Miner's data:"<<std::endl;
+    std::cout<<RESET<<"-> Miner's data:"<<std::endl;
     std::cout<<"   Name: "<<getName()<<std::endl;
     std::cout<<"   Age: "<<getAge()<<std::endl;
     std::cout<<"   Cargo: "<<getCargo()<<std::endl;

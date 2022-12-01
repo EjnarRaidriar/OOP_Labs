@@ -11,6 +11,7 @@ private:
     std::string name;
     int age;
     unsigned int cargo;
+    std::string location;
 protected:
     std::vector<Resource*> resources;
 public:
@@ -25,6 +26,11 @@ public:
     void setAge(int age);
     int getCargo();
     void setCargo(int cargo);
+    std::string getLocation();
+    void setLocation(std::string location);
+    Resource* getResource();
+    int getResourceAmount();
+    void removeResource();
 
     //Methods
     virtual bool collectResource(Resource* resource) = 0;
@@ -81,6 +87,38 @@ int Worker::getCargo()
 void Worker::setCargo(int cargo)
 {
     this->cargo = cargo;
+}
+
+std::string Worker::getLocation()
+{
+    return location;
+}
+
+void Worker::setLocation(std::string location)
+{
+    this->location = location;
+}
+
+Resource* Worker::getResource()
+{
+    if (resources.size() > 0)
+    {
+        return resources.back();
+    }
+    else
+    {
+        return NULL;
+    }
+}
+
+int Worker::getResourceAmount()
+{
+    return resources.size();
+}
+
+void Worker::removeResource()
+{
+    resources.pop_back();
 }
 
 #endif

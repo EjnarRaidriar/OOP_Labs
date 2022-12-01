@@ -18,19 +18,19 @@ public:
 
 Fish::Fish() : Resource("Fish", 100)
 {
-    std::cout<<"-> Fish default constructor called!"<<std::endl;
+    std::cout<<MAGENTA<<"-> Fish default constructor called!"<<std::endl;
 }
 
 Fish::Fish(std::string name, int durability) : Resource(name, durability)
 {
-    std::cout<<"-> Fish custom constructor called!"<<std::endl;
+    std::cout<<MAGENTA<<"-> Fish custom constructor called!"<<std::endl;
 }
 
 Fish::Fish(Resource &fish) : Resource(fish.getName(), fish.getDurability()) {}
 
 Fish::~Fish()
 {
-    std::cout<<"-> Fish destructor called!"<<std::endl;
+    std::cout<<MAGENTA<<"-> Fish destructor called!"<<std::endl;
 }
 
 //Methods
