@@ -1,5 +1,10 @@
 # Class hierarchy
 
+## High-level modules
+
+1. Biom
+2. City
+
 ## Abstract Classes
 
 1. Worker
